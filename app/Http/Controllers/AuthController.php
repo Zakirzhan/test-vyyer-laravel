@@ -11,6 +11,13 @@ class AuthController extends Controller
     protected $access_token;
     protected $audience;
 
+    public function __construct()
+    {
+        $this->user['name'] = "interview_new@vyyer.com";
+        $this->user['password'] = "5nt9wPAhQkMcukPV";
+        $this->user['client_id'] = 'EtHf0UdEIJbwmk6kdicIfNq4lGkpZko0';
+    }
+
     public function login()
     {
         return view("login");
@@ -18,11 +25,6 @@ class AuthController extends Controller
 
     public function authenticate(Request $request)
     {
-        //in this place will be validator of request datas
-        if(!$this->fill_user_data()){
-            dd("user data invalid");
-        }
-
         //getting audience from jwt
         $this->audience = (!$request->session()->get("audience")) ? $this->getAudience($request) : $request->session()->get("audience");
 
@@ -51,9 +53,7 @@ class AuthController extends Controller
         }
         return null;
     }
-
-
-
+    
     protected function getJWT()
     {
         $data = [
@@ -62,7 +62,7 @@ class AuthController extends Controller
             'username' => $this->user['name'],
             'password' => $this->user['password']];
 
-        $json = $this->postData($data);
+        $json = self::postData($data);
 
         return isset($json['id_token']) ? $json['id_token'] : null;
     }
@@ -117,13 +117,5 @@ class AuthController extends Controller
         } catch (Exception $ex){
             die( 'Caught exception: '.  $ex->getMessage());
         }
-    }
-
-    protected function fill_user_data(){
-        $this->user['name'] = "interview_new@vyyer.com";
-        $this->user['password'] = "5nt9wPAhQkMcukPV";
-        $this->user['client_id'] = 'EtHf0UdEIJbwmk6kdicIfNq4lGkpZko0';
-
-        return true;
     }
 }
