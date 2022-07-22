@@ -62,7 +62,7 @@ class AuthController extends Controller
             'username' => $this->user['name'],
             'password' => $this->user['password']];
 
-        $json = self::postData($data);
+        $json = $this->postData($data);
 
         return isset($json['id_token']) ? $json['id_token'] : null;
     }
