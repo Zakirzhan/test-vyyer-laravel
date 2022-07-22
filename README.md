@@ -2,4 +2,5 @@
 ## About TestApp
 - **[ Demonstration video on youtube](https://www.youtube.com/watch?v=TeKDvUNCiUk&ab_channel=MYHITLTD)**
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Делается запрос на авторизацию, при успешном получении ключа создается сессия на юзера, сохраняем нужные данные в сессиях.
+При открытии дэшборда Middleware чекает сессии, если пусто, отправляет залогиниться с начала.
