@@ -123,7 +123,6 @@ class AuthController extends Controller
         $this->user['name'] = "interview_new@vyyer.com";
         $this->user['password'] = "5nt9wPAhQkMcukPV";
         $this->user['client_id'] = 'EtHf0UdEIJbwmk6kdicIfNq4lGkpZko0';
-        $this->user['grant_type'] = 'password';
 
         return true;
     }
