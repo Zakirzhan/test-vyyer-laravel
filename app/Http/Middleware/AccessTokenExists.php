@@ -4,7 +4,6 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Session;
 
 class AccessTokenExists
 {
@@ -17,7 +16,7 @@ class AccessTokenExists
      */
     public function handle(Request $request, Closure $next)
     {
-        if (!Session::exists('access_token') || !Session::exists('audience')) {
+        if (!$request->session()->exists('access_token') || !$request->session()->exists('audience')) {
             return redirect('/login');
         }
 
